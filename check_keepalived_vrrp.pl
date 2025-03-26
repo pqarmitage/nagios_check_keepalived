@@ -294,6 +294,7 @@ sub chk_vrrp_hex2inet($)
    my $oct;
    my @octs;
    $hexstr =~ s/"//g;
+   $hexstr =~ s/\\\\/\\/g;
    if (length($hexstr) == 4)
    {
      for $oct (split(//, $hexstr))
