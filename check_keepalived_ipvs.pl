@@ -326,10 +326,19 @@ sub chk_ipvs_hex2inet($)
    my $oct;
    my @octs;
    $hexstr =~ s/"//g;
-   for $oct (split(/ /, $hexstr))
+   if (length($hexstr) == 4)
    {
-      $octs[@octs] = hex($oct);
+     for $oct (split(//, $hexstr))
+     {
+       $octs[@octs] = ord($oct);
+     };
+   } else {
+     for $oct (split(/ /, $hexstr))
+     {
+       $octs[@octs] = hex($oct);
+     };
    };
+
    return(join('.', @octs));
 };
 
